@@ -56,3 +56,38 @@ button {
     color: white;
     padding: 8px;
 }
+
+.basic-info {
+    color: #878787;
+}
+#city{
+    font-size: 24px;
+}
+
+
+.weather-display {
+    width: 650px;
+    border: 1px solid #dfe1e5;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.weather-detail {
+    display: flex;
+    justify-content: space-between;
+}
+.condition {
+    width: 270px;
+    color: #878787;
+}
+
+#temperature > * {
+    vertical-align: top;
+}
+
+#temperature img {
+    height: 100px;
+}
+#temperature_data{
+    font-size: 64px;
+}

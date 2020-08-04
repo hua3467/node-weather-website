@@ -42,27 +42,35 @@ app.get("/help", (req, res) => {
 })
 
 app.get("/weather", (req, res) => {
-    if(!req.query.address){
+    if (!req.query.address) {
         return res.send({
             error: "Please enter an address."
         })
     }
 
-    geocode(req.query.address, (error, { latitude, longtitude, location} = {}) => {
+    geocode(req.query.address, (error, {
+        latitude,
+        longtitude,
+        location
+    } = {}) => {
 
         console.log(latitude, longtitude, location)
         if (error) {
-            return res.send({ error})
+            return res.send({
+                error
+            })
         }
 
         forecast(latitude, longtitude, (error, forecastData) => {
-            if(error) {
-                return res.send({ error })
+            if (error) {
+                return res.send({
+                    error
+                })
             }
 
             res.send({
                 forecast: forecastData,
-                location, 
+                location,
                 address: req.query.address
             })
         })
@@ -105,3 +113,52 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
     console.log("Server is up on port " + port);
 });
+
+
+const sample = {
+    request: {
+        type: "LatLon",
+        query: "Lat 23.34 and Lon -94.23",
+        language: "en",
+        unit: "f"
+    },
+    location: {
+        name: null,
+        country: null,
+        region: null,
+        lat: null,
+        lon: null,
+        timezone_id: "America/Rankin_Inlet",
+        localtime: "2020-08-02 16:15",
+        localtime_epoch: 1596384900,
+        utc_offset: "-5.0"
+    },
+    current: {
+        observation_time: "09:15 PM",
+        temperature: 84,
+        weather_code: 116,
+        weather_icons: [
+            "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png"
+        ],
+        weather_descriptions: [
+            "Partly cloudy",
+            "Sunny",
+            "Light Rain",
+            "Overcast",
+            "Mostly Cloudy",
+            "Cloudy",
+            "Clear"
+        ],
+        wind_speed: 7,
+        wind_degree: 86,
+        wind_dir: "E",
+        pressure: 1012,
+        precip: 0,
+        humidity: 73,
+        cloudcover: 18,
+        feelslike: 91,
+        uv_index: 7,
+        visibility: 6,
+        is_day: "yes"
+    }
+}
