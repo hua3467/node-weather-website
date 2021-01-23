@@ -91,3 +91,8 @@ button {
 #temperature_data{
     font-size: 64px;
 }
+
+.unitActive {
+    color: rgb(0, 153, 255);
+    cursor: pointer;
+}
