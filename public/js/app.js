@@ -28,3 +28,10 @@ weatherForm.addEventListener( "submit", (e) => {
         });
     });
 });
+
+function getLocation() {
+    function success (position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+    }
+}
