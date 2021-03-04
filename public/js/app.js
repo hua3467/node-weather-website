@@ -3,8 +3,15 @@ const search = document.querySelector("input");
 const cityName = document.querySelector("#city");
 const temperatureDisplay = document.querySelector("#temperature_data");
 const secondaryConditions = document.querySelectorAll(".condition p");
+const description = document.querySelector("#description");
 const unitF = document.querySelector("#unitF");
-const unitC = document.querySelector("#UnitC");
+const unitC = document.querySelector("#unitC");
+const weatherIcon = document.querySelector("#temperature img");
+
+let currentLocation = {
+    lat: 46.8854672,
+    lon: -96.8008658
+}
 
 
 weatherForm.addEventListener( "submit", (e) => {
@@ -29,33 +36,48 @@ weatherForm.addEventListener( "submit", (e) => {
     });
 });
 
-function getLocation() {
-    function success (position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-    }
-}
+if (window.navigator.geolocation) {
+    window.navigator.geolocation.getCurrentPosition( (result) => {
+        currentLocation.lat = result.coords.latitude;
+        currentLocation.lon = result.coords.longitude;
+        forecast(currentLocation.lat, currentLocation.lon, (obj) => {
+            console.log(obj);
+            showInfo(obj);
+        })
+    }, (e) => {
+        console.log(e);
+    });
+} 
 
 const forecast = (latitude, longtitude, callback) => {
 
     const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longtitude}&appid=db52ff1d1ebc58e384ae214ed9750890`
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => callback(data));
     
-    request({ url, json: true}, (error, { body }) => {
-        if (error) {
-            callback("Unable to connect to weather server.", undefined)
-        } else if (body.error) {
-            callback("Unable to find the location.", undefined);
-        } else {
-            // callback(undefined, `The weather is ${body.weather[0].main}. It feels like ${body.main.feels_like} degrees`);
-            callback(undefined, {
-                mainTemp: KtoF(body.main.temp),
-                feelsLike: KtoF(body.main.feel_like),
-                description: body.weather[0].description,
-                humidity: body.main.humidity,
-                pressure: body.main.pressure,
-                windSpeed: body.wind.speed,
-                windDegree: body.wind.deg
-            });
-        }
+}
+
+function showInfo(data) {
+    cityName.textContent = data.name;
+    mainData = data.main;
+    temperatureDisplay.textContent = KtoF(mainData.temp);
+    secondaryConditions[0].textContent = "Pressure: " + mainData.pressure;
+    secondaryConditions[1].textContent = "Humidity: " + mainData.humidity;
+    secondaryConditions[2].textContent = "Wind Speed: " + data.wind.speed;
+    description.textContent = data.weather[0].main;
+    weatherIcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+
+    unitC.addEventListener("click", (e) => {
+        temperatureDisplay.textContent = KtoC(mainData.temp);
+        unitC.classList.remove("unitActive");
+        unitF.classList.add("unitActive");
+    });
+    unitF.addEventListener("click", (e) => {
+        temperatureDisplay.textContent = KtoF(mainData.temp);
+        unitC.classList.add("unitActive");
+        unitF.classList.remove("unitActive");
     });
 }
+
