@@ -81,6 +81,10 @@ button {
     color: #878787;
 }
 
+#temperature {
+    display: flex;
+}
+
 #temperature > * {
     vertical-align: top;
 }
@@ -90,9 +94,62 @@ button {
 }
 #temperature_data{
     font-size: 64px;
+    width: 116px;
+    text-align: center;
+    margin: 0;
 }
 
-.unitActive {
+.temperatureUnit {
+    display: flex;
+    align-items: baseline;
+}
+#unit {
+    font-size: 2em;
+    margin: 2px;
+}
+
+#btnUnitSwitch {
     color: rgb(0, 153, 255);
     cursor: pointer;
+    font-size: 1em;
+    margin: 2px;
+}
+
+@media (max-width: 575.98px) {
+    header {
+        margin-bottom: 32px;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    .weather-display {
+        width: calc(100% - 32px);
+    }
+    .weather-detail {
+        display: flex;
+        flex-direction: column;
+    }
+    .temperatureUnit {
+        flex-direction: column;
+    }
+    #searchForm {
+        
+    }
+    .form-item {
+        font-size: 17px;
+        border-radius: 8px;
+    }
+    #searchForm input {
+        height: 32px;
+        width: calc(100% - 110px);
+    }
+    #searchForm button {
+        height: 50px;
+        padding-left: 16px;
+        padding-right: 16px;
+        background: #ffcc00;
+        color: black;
+        border: none;
+    }
+
 }

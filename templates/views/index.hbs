@@ -10,33 +10,34 @@
 <body>
     <div class="main-content">
         {{>header}}
-        <p>Get your weather.</p>
-        <br>
-        <br>
+        
 
-        <form action="submit">
-            <input type="text" placeholder="Name of city, state...">
-            <button>Search</button>
+        <form id="searchForm" action="submit">
+            <input class="form-item" type="text" placeholder="Name of city, state...">
+            <button class="form-item">Search</button>
         </form>
 
         <br>
         <br>
         <div class="weather-display">
             <div class="basic-info">
-                <h2 id="city">Fargo, ND</h2>
-                <p id="time">Monday 7:00 PM</p>
-                <p id="description">Mostly sunny</p>
+                <h2 id="city">...</h2>
+                <p id="time">...</p>
+                <p id="description">Getting your weather...</p>
             </div>
             <div class="weather-detail">
                 <div id="temperature">
-                    <img src="img/animated_icons/cloudy-day-1.svg" alt="">
-                    <span id="temperature_data">74</span>
-                    <span id="unitF" class="">&#8457;</span> | <span id="unitC" class="unitActive">&#8451;</span></span>
+                    <img src="img/loading.gif" alt="">
+                    <h3 id="temperature_data">...</h3>
+                    <div class="temperatureUnit">
+                        <p id="unit">&#8457;</p>
+                        <p id="btnUnitSwitch">Show &#8451;</p>
+                    </div>
                 </div>
                 <div class="condition">
-                    <p>Precipitation: 0%</p>
-                    <p>Humidity: 41%</p>
-                    <p>Wind: 6 mph</p>
+                    <p>Precipitation: ...</p>
+                    <p>Humidity: ...</p>
+                    <p>Wind: ...</p>
                     <p></p>
                 </div>
             </div>
