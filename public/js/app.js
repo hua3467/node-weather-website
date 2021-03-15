@@ -31,7 +31,7 @@ weatherForm.addEventListener("submit", (e) => {
                     } else {
                         cityName.textContent = data.location;
                         temperatureDisplay.textContent = data.mainTemp;
-                        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.forecast.icon + "@2x.png";
+                        weatherIcon.src = "https://openweathermap.org/img/wn/" + data.forecast.icon + "@2x.png";
                         secondaryConditions[0].textContent = "Pressure: " + data.pressure;
                         secondaryConditions[1].textContent = "Humidity: " + data.humidity;
                         secondaryConditions[2].textContent = "Wind Speed: " + data.windSpeed;
@@ -83,12 +83,13 @@ function switchUnit() {
     btnUnitSwitch.addEventListener("click", (e) => {
         if (isCurrentF) {
             temperatureDisplay.textContent = FtoC(temperatureDisplay.textContent);
+            unit.innerHTML = "&#8451;";
+            e.target.innerHTML = "Show &#8457;"
+        } else {
+            temperatureDisplay.textContent = CtoF(temperatureDisplay.textContent);
+            
             unit.innerHTML = "&#8457;";
             e.target.innerHTML = "Show &#8451;"
-        } else {
-            unit.innerHTML = "&#8451;";
-            temperatureDisplay.textContent = CtoF(temperatureDisplay.textContent);
-            e.target.innerHTML = "Show &#8457;"
         }
         isCurrentF = !isCurrentF;
     });

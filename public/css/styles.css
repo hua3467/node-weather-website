@@ -133,7 +133,8 @@ button {
         flex-direction: column;
     }
     #searchForm {
-        
+        display: flex;
+        justify-content: space-between;
     }
     .form-item {
         font-size: 17px;
@@ -141,7 +142,7 @@ button {
     }
     #searchForm input {
         height: 32px;
-        width: calc(100% - 110px);
+        width: calc(100% - 124px);
     }
     #searchForm button {
         height: 50px;
