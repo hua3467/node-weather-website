@@ -52,8 +52,8 @@ input {
 button {
     cursor: pointer;
     border: 1px solid #888;
-    background: #888;
-    color: white;
+    background: #ffcc00;
+    color: black;
     padding: 8px;
 }
 
@@ -95,7 +95,7 @@ button {
 #temperature_data{
     font-size: 64px;
     width: 116px;
-    text-align: center;
+    text-align: right;
     margin: 0;
 }
 

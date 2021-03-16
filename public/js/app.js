@@ -60,7 +60,7 @@ updateTime()
 
 const forecast = (latitude, longtitude, callback) => {
 
-    const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longtitude}&appid=db52ff1d1ebc58e384ae214ed9750890`
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longtitude}&appid=db52ff1d1ebc58e384ae214ed9750890`
 
     fetch(url)
         .then(response => response.json())
@@ -76,7 +76,7 @@ function showInfo(data) {
     secondaryConditions[1].textContent = "Humidity: " + mainData.humidity;
     secondaryConditions[2].textContent = "Wind Speed: " + data.wind.speed;
     description.textContent = data.weather[0].main;
-    weatherIcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+    weatherIcon.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
 }
 
 function switchUnit() {
